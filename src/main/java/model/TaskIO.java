@@ -271,12 +271,17 @@ public class TaskIO {
 
         if (task.isRepeated()) {
             sb.append("\u041e\u0442");
+            sb.append(" ");
         }
         sb.append(sdf1.format(task.getStartTime()));
         if (task.isRepeated()) {
-            sb.append("\u0414\u043e");
+            sb.append(" ");
+            sb.append(" \u0414\u043e");
+            sb.append(" ");
             sb.append(sdf1.format(task.getEndTime()));
+            sb.append(" ");
             sb.append("\u043a\u0430\u0436\u0434\u044b\u0435");
+            sb.append(" ");
             sb.append(makeIntervalSecFormat(task.getRepeatInterval()));
         }
         return sb.toString();
