@@ -12,7 +12,6 @@ import view.Main;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by User on 24.05.2016.
@@ -188,14 +187,14 @@ public class EditController {
             repited = false;
             endTime.setVisible(false);
             intervalTime.setVisible(false);
-            firstLable.setText("Время");
+            firstLable.setText("\u0412\u0440\u0435\u043c\u044f");
             secondLable.setVisible(false);
             thertLable.setVisible(false);
         } else {
             repited = true;
             endTime.setVisible(true);
             intervalTime.setVisible(true);
-            firstLable.setText("Время начала");
+            firstLable.setText("\u0412\u0440\u0435\u043c\u044f \u043d\u0430\u0447\u0430\u043b\u0430");
             secondLable.setVisible(true);
             thertLable.setVisible(true);
         }
