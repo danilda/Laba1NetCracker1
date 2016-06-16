@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.log4j.Logger;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -8,6 +10,7 @@ import java.util.NoSuchElementException;
  * Created by User on 07.02.2016.
  */
 public class ArrayTaskList extends TaskList {
+    private static final Logger log = Logger.getLogger(ArrayTaskList.class);
     private class ArrayIterator implements Iterator<Task>{
         private int cursor;       // следующий элемент
         private int last = -1; // последний элемент
@@ -18,7 +21,8 @@ public class ArrayTaskList extends TaskList {
 
         public Task next(){
             if (!hasNext()) {
-                throw new NoSuchElementException("Нет следующего елемента");
+                log.error("Нет следующего елемента");
+                return null;
             } else {
                 last = cursor;
                 cursor++;
@@ -28,13 +32,13 @@ public class ArrayTaskList extends TaskList {
 
         public void remove() {
             if (last < 0)
-                throw new IllegalStateException();
+                log.error("Нет элемента на удаление");
             try {
                 ArrayTaskList.this.remove(getTask(last));
                 cursor = last;
                 last = -1;
-            } catch (IndexOutOfBoundsException ex) {
-                throw new ConcurrentModificationException();
+            } catch (IndexOutOfBoundsException e) {
+                log.error("Ошибка в методе remove : " + e.getMessage());
             }
         }
     }
@@ -44,7 +48,7 @@ public class ArrayTaskList extends TaskList {
 
     public void add(Task task){
         if(task == null)
-            throw new NullPointerException();
+            log.error("Добавление таска со значением null");
         if(lastIndex == array.length){
             Task[] arrayTmp = new Task[array.length+10];
             for(int i = 0; i < array.length; i++)
@@ -58,7 +62,7 @@ public class ArrayTaskList extends TaskList {
     }
     public boolean remove(Task task){
         if(task == null)
-            throw new NullPointerException("Удаление таска со значением null");
+            log.error("Удаление таска со значением null");
         boolean point = false;
         for(int i = 0; i < lastIndex; i++){
             if(task.equals(array[i]) == true && point == false){
@@ -85,7 +89,7 @@ public class ArrayTaskList extends TaskList {
 
     public Task getTask(int index){
         if(index > lastIndex-1)
-            throw new IndexOutOfBoundsException();
+            log.error("Ошибка в методе getTask : возврат несуществующего элемента ");
         return array[index];
     }
 

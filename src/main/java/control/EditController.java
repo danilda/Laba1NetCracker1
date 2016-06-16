@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Task;
 import model.TaskIO;
+import org.apache.log4j.Logger;
 import view.Main;
 
 import java.io.IOException;
@@ -61,6 +62,7 @@ public class EditController {
     private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat sdf2 = new SimpleDateFormat("dd HH:mm");
     private static final SimpleDateFormat sdf3 = new SimpleDateFormat("dd");
+    private static final Logger log = Logger.getLogger(EditController.class);
 
 
     public static Task getNowTask() {
@@ -159,11 +161,9 @@ public class EditController {
         try {
             TaskIO.writeBinary(Main.getArrayTaskList(), Main.getFile());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.info(e.getMessage());
         }
 
-
-        System.out.println(title);
         STAGE.close();
 
     }
@@ -200,8 +200,5 @@ public class EditController {
             thertLable.setVisible(true);
         }
     }
-
-//    public void setTitleField(ActionEvent actionEvent){
-//    }
 
 }

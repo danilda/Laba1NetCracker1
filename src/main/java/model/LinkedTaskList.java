@@ -1,5 +1,7 @@
 package model;
 
+import org.apache.log4j.Logger;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -10,6 +12,7 @@ import static java.util.Objects.isNull;
  * Created by User on 23.02.2016.
  */
 public class LinkedTaskList extends TaskList {
+    private static final Logger log = Logger.getLogger(LinkedTaskList.class);
     private class LinkedIterator implements Iterator<Task>{
         private Node lastNode = root;
         private int cursor;       // следующий элемент
@@ -22,7 +25,8 @@ public class LinkedTaskList extends TaskList {
 
         public Task next(){
             if (!hasNext()) {
-                throw new NoSuchElementException("Нет следующего елемента");
+                log.error("Нет следующего елемента");
+                return null;
             } else {
                 Node a = lastNode;
                 last = cursor;
@@ -34,13 +38,13 @@ public class LinkedTaskList extends TaskList {
 
         public void remove() {
             if (last < 0)
-                throw new IllegalStateException();
+                log.error("Нет элемента на удаление");
             try {
                 LinkedTaskList.this.remove(getTask(last));
                 cursor = last;
                 last = -1;
-            } catch (IndexOutOfBoundsException ex) {
-                throw new ConcurrentModificationException();
+            } catch (IndexOutOfBoundsException e) {
+                log.error("Ошибка в методе remove : " + e.getMessage());
             }
         }
     }
@@ -55,7 +59,7 @@ public class LinkedTaskList extends TaskList {
     @Override
     public void add(Task task) {
         if(task == null)
-            throw new NullPointerException("Добавление элемента null в список");
+            log.error("Добавление таска со значением null");
         if(isNull(root)){
             root = new Node();
             root.data = task;
@@ -75,7 +79,7 @@ public class LinkedTaskList extends TaskList {
     public boolean remove(Task task) {
         Node tmp = root;
         if(task == null)
-            throw new NullPointerException();
+            log.error("Удаление таска со значением null");
         while (tmp != null)
         {
             if(tmp.data.equals(task)){

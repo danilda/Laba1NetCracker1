@@ -18,12 +18,13 @@ import model.ArrayTaskList;
 import model.Task;
 import model.TaskIO;
 import model.Tasks;
+import org.apache.log4j.Logger;
 import view.Main;
 
 import java.util.Date;
 
 public class Controller {
-
+    private static final Logger log = Logger.getLogger(Controller.class);
     private ArrayTaskList arrayTaskList = Main.getArrayTaskList();
 
     @FXML
@@ -44,7 +45,7 @@ public class Controller {
     }
 
 
-    public void addTask(ActionEvent actionEvent) throws Exception {
+    public void addTask(ActionEvent actionEvent){
         try{
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("/view/edit.fxml"));
@@ -60,13 +61,13 @@ public class Controller {
             EditController.setNowTask(null);
         }
         catch (Exception e){
-            throw new Exception("Ошибка в addTask");
+            log.error("Ошибка в добавление нового элемента" + e.getMessage());
         }
     }
 
 
     public void showTable(ArrayTaskList taskList){
-        System.out.println("Дошло");
+        log.info("Отображение Таблицы");
         colum1.setCellValueFactory(new PropertyValueFactory<Task, String>("dateToString"));
         colum2.setCellValueFactory(new PropertyValueFactory<Task, String>("title"));
         table.setItems(ArrayTaskToList(taskList));
@@ -86,7 +87,7 @@ public class Controller {
         showTable(arrayTaskList);
     }
 
-    public void onClickTable(ActionEvent actionEvent) throws Exception{
+    public void onClickTable(ActionEvent actionEvent){
         Task task = (Task)table.getSelectionModel().getSelectedItem();
         EditController.setNowTask(task);
         System.out.println(task.toString());
@@ -109,7 +110,7 @@ public class Controller {
         }
         catch (Exception e){
             EditController.setNowTask(null);
-            throw new Exception("Ошибка в onClickTable");
+            log.error("Ошибка в отображение таблицы :" + e.getMessage());
         }
     }
     public void onClickDelete(ActionEvent actionEvent) throws Exception{

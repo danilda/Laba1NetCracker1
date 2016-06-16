@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import model.ArrayTaskList;
 import model.Tasks;
+import org.apache.log4j.Logger;
 import view.Main;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.util.Date;
  * Created by User on 11.06.2016.
  */
 public class Checker implements Runnable {
+    private static final Logger log = Logger.getLogger(Checker.class);
     private static Window node;
     private Stage stages;
 
@@ -38,15 +40,13 @@ public class Checker implements Runnable {
             ArrayTaskList list = (ArrayTaskList) Tasks.incoming(Main.getArrayTaskList(), new Date(),
                     new Date(new Date().getTime() + 24 * 60 * 60 * 1000));
             if (list != null) {
-                System.out.println("---------------------------");
-                System.out.println("list " + list.toString());
-                System.out.println("---------------------------");
+                log.info(list.toString());
                 CheckerController.setArrayTaskList(list);
 
                 try {
                     showChecker();
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    log.error("Ошибка в добавление нового элемента" + e.getMessage());
                 }
             }
         }
@@ -68,7 +68,7 @@ public class Checker implements Runnable {
 
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            log.error("Ошибка в отображения диалогового окна :" + e.getMessage());
         }
     }
 
