@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="600.0" prefHeight="491.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.Controller">
+    <children>
+        <HBox prefHeight="95.0" prefWidth="600.0">
+         <children>
+            <AnchorPane prefHeight="72.0" prefWidth="600.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="4.0" prefHeight="38.0" prefWidth="539.0" text="Введите параметр времени за который нужно показать задачи">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="497.0" layoutY="33.0" mnemonicParsing="false" onAction="#showAllTasks" text="Все задачи" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="45.0" />
+                  <Button mnemonicParsing="false" onAction="#showAroundTasks" text="Показать" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="45.0" />
+                  <TextField fx:id="aroundTextField" layoutX="14.0" layoutY="45.0" prefHeight="29.0" prefWidth="171.0" promptText="dd hh:mm" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="45.0" />
+               </children>
+            </AnchorPane>
+         </children></HBox>
+      <HBox prefHeight="310.0" prefWidth="600.0">
+         <children>
+            <TableView fx:id="table" prefHeight="305.0" prefWidth="606.0">
+              <columns>
+                <TableColumn fx:id="colum1" prefWidth="194.0" text="Время задачи" />
+                <TableColumn fx:id="colum2" prefWidth="403.0" text="Задача" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="96.0" prefWidth="603.0">
+               <children>
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#addTask" text="Добавить" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
+                  <Button fx:id="chan" layoutX="262.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickTable" text="Изменить" />
+                  <Button fx:id="delete" layoutX="488.0" layoutY="14.0" mnemonicParsing="false" onAction="#onClickDelete" text="Удалить" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+    </children>
+</VBox>

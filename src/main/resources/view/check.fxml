@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="267.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.CheckerController">
+   <children>
+      <AnchorPane prefHeight="283.0" prefWidth="477.0">
+         <children>
+            <TableView fx:id="tableChecker" layoutY="66.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="columChecker1" prefWidth="88.0" text="Время" />
+                <TableColumn fx:id="columChecker2" prefWidth="388.0" text="Задача" />
+              </columns>
+            </TableView>
+            <Label layoutX="99.0" layoutY="14.0" prefHeight="36.0" prefWidth="279.0" text="Список заданий на ближайшие сутки">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

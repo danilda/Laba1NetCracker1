@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox maxHeight="332.0" maxWidth="610.0" minHeight="-Infinity" minWidth="610.0" prefHeight="332.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.EditController">
+   <children>
+      <AnchorPane prefHeight="333.0" prefWidth="610.0">
+         <children>
+            <CheckBox fx:id="activeCheck" layoutX="486.0" layoutY="20.0" mnemonicParsing="false" onAction="#isActive" prefHeight="49.0" prefWidth="102.0" selected="true" text="Активное" AnchorPane.leftAnchor="486.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="firstLable" layoutX="39.0" layoutY="146.0" prefHeight="35.0" prefWidth="102.0" text="Время" textAlignment="CENTER" AnchorPane.leftAnchor="39.0" AnchorPane.topAnchor="176.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="secondLable" layoutX="198.0" layoutY="146.0" prefHeight="35.0" prefWidth="102.0" text="Время конца" visible="false" AnchorPane.leftAnchor="205.0" AnchorPane.topAnchor="176.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="thertLable" layoutX="349.0" layoutY="146.0" prefHeight="35.0" prefWidth="127.0" text="Время интервала" visible="false" AnchorPane.leftAnchor="349.0" AnchorPane.topAnchor="176.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="startTime" layoutX="13.0" layoutY="194.0" prefHeight="29.0" prefWidth="147.0" promptText="yyyy-MM-dd HH:mm" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="214.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="endTime" layoutX="176.0" layoutY="194.0" prefHeight="29.0" prefWidth="147.0" promptText="yyyy-MM-dd HH:mm" visible="false" AnchorPane.leftAnchor="177.0" AnchorPane.topAnchor="214.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="intervalTime" layoutX="339.0" layoutY="194.0" prefHeight="29.0" prefWidth="147.0" promptText="dd HH:mm" visible="false" AnchorPane.leftAnchor="339.0" AnchorPane.topAnchor="214.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
+            <Button fx:id="addButton" layoutX="486.0" layoutY="266.0" mnemonicParsing="false" onAction="#addNewTask" prefHeight="29.0" prefWidth="102.0" text="Добавить" AnchorPane.leftAnchor="486.0" AnchorPane.topAnchor="276.0" />
+            <CheckBox fx:id="repitedCheck" layoutX="486.0" layoutY="75.0" mnemonicParsing="false" onAction="#isRepited" prefHeight="49.0" prefWidth="102.0" text="Повторяется">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </CheckBox>
+            <TextArea fx:id="titleField" layoutX="15.0" layoutY="16.0" prefHeight="131.0" prefWidth="461.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
