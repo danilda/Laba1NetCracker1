@@ -75,23 +75,50 @@ public class EditController {
     @FXML
     private void initialize(){
         if(nowTask == null){
-
         } else {
             cTask = nowTask;
-            addButton.setText("Изменить");
+            addButton.setText("\u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c");
             titleField.setText(cTask.getTitle());
             if(nowTask.isRepeated()){
-
                 startTime.setText(sdf1.format(cTask.getStartTime()));
                 endTime.setText(sdf1.format(cTask.getEndTime()));
-                intervalTime.setText(sdf2.format(new Date(cTask.getRepeatInterval())));
+                int d, h, m;
+                d = (cTask.getRepeatInterval()/1000/60/60/24);
+                h = (cTask.getRepeatInterval()/1000/60/60%24);
+                m = (cTask.getRepeatInterval()/1000/60%60%24);
+                String hours, min;
+                if(h < 10)
+                    hours = "0" + h;
+                else
+                    hours = ""+h;
+                if(m < 10)
+                    min = "0" + m;
+                else
+                    min = ""+m;
+                System.out.println((cTask.getRepeatInterval()%1000%60) + " -минуты   "  + " -часы   " + (int)cTask.getRepeatInterval()/1000/60/60/24 + "  -Дни  " );
+                String dateInterval = "" + d + " " + hours + ":" + min;
+                intervalTime.setText(dateInterval);
             } else {
                 startTime.setText(sdf1.format(cTask.getStartTime()));
             }
 
             repitedCheck.setSelected(cTask.isRepeated());
             activeCheck.setSelected(cTask.isActive());
-            cTask.toString();
+            if(cTask.isRepeated()){
+                repited = true;
+                endTime.setVisible(true);
+                intervalTime.setVisible(true);
+                firstLable.setText("\u0412\u0440\u0435\u043c\u044f " +
+                        "\u043d\u0430\u0447\u0430\u043b\u0430");
+                secondLable.setVisible(true);
+                thertLable.setVisible(true);
+            }
+
+            try {
+                TaskIO.writeBinary(Main.getArrayTaskList(), Main.getFile());
+            } catch (IOException e) {
+                log.info(e.getMessage());
+            }
 
         }
 
@@ -148,6 +175,7 @@ public class EditController {
             interval = day*24*60*60*1000 + hour*60*60*1000 + minute*60*1000;
             cTask = new Task(title, start, end, interval);
             Main.getArrayTaskList().add(cTask);
+            cTask.setActive(active);
 
         } else {
             parseToDate(startTime, start);
